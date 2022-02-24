@@ -2,26 +2,138 @@ import React from "react";
 import "./EmployeeRegistration.css";
 import ReactDatePicker from "react-datepicker";
 import { useState } from "react";
+import { Link } from "react-router-dom";
+import { EmployeeTable } from "../EmployeeTable/EmployeeTable";
+// import { useLocalStorage } from "../../components/Hooks/localStorage";
+import { DummyTable } from "../../components/DummyTable/DummyTable";
 
-export const EmployeeRegistration = () => {
-  const [firstName, setName] = useState("");
-  const [lastName, setLastName] = useState("");
-  const [dateBirth, setDateBirth] = useState("");
+export const EmployeeRegistration = (props) => {
+  const [data, setDataArr] = useState([]);
+
+  const [firstName, setFirstName] = useState("firstName", "");
+  const [lastName, setLastName] = useState("lastName", "");
+  const [dateBirth, setDateBirth] = useState(new Date());
   const [startDate, setStartDate] = useState(new Date());
   //* Address States
-  const [street, setStreet] = useState("");
-  const [city, setCity] = useState("");
-  const [state, setState] = useState("");
-  const [zipCode, setZipCode] = useState("");
+  const [street, setStreet] = useState("street", "");
+  const [city, setCity] = useState("city", "");
+  const [state, setState] = useState("state", "");
+  const [zipCode, setZipCode] = useState("zipCode", "");
   //* Department State
-  const [department, setDepartment] = useState("");
+  const [department, setDepartment] = useState("department", "");
 
-  console.log(startDate);
+  // let data = [];
+
+  //? States Values
+  const changeFirstName = (event) => {
+    setFirstName(event.target.value);
+  };
+  const changeLastName = (event) => {
+    setLastName(event.target.value);
+  };
+
+  //? Address State
+  const changeStreet = (event) => {
+    setStreet(event.target.value);
+  };
+  const changeCity = (event) => {
+    setCity(event.target.value);
+  };
+  const changeState = (event) => {
+    setState(event.target.value);
+  };
+  const changeZipCode = (event) => {
+    setZipCode(event.target.value);
+  };
+  //? Department State
+  const changeDepartment = (event) => {
+    setDepartment(event.target.value);
+  };
+
+  const transferValue = (event) => {
+    event.preventDefault();
+
+    const val = {
+      firstName,
+      lastName,
+      dateBirth,
+      startDate,
+      street,
+      city,
+      state,
+      zipCode,
+      department,
+    };
+    setDataArr([...data, val]);
+    clearState();
+    // console.log(data);
+  };
+
+  const clearState = () => {
+    setFirstName("");
+    setLastName("");
+    setDateBirth("");
+    setStartDate("");
+    setStreet("");
+    setCity("");
+    setState("");
+    setZipCode("");
+    setDepartment("");
+  };
+
+  // console.log(firstName);
+  // console.log(lastName);
+  // console.log(dateBirth);
+  // console.log(startDate);
+  // console.log(street);
+  // console.log(city);
+  props.func(data);
 
   return (
-    <ReactDatePicker
-      selected={startDate}
-      onChange={(date) => setStartDate(date)}
-    />
+    <>
+      <form>
+        <div className="inputWrapper">
+          <label>First Name</label>
+          <input type="text" value={firstName} onChange={changeFirstName} />
+        </div>
+        <div className="inputWrapper">
+          <label>Last Name</label>
+          <input type="text" value={lastName} onChange={changeLastName} />
+        </div>
+        <ReactDatePicker
+          selected={dateBirth}
+          onChange={(date) => setDateBirth(date)}
+        />
+        <ReactDatePicker
+          selected={startDate}
+          onChange={(date) => setStartDate(date)}
+        />
+        <div className="addressInfos">
+          <div className="inputWrapper">
+            <label>Street</label>
+            <input type="text" value={street} onChange={changeStreet} />
+          </div>
+          <div className="inputWrapper">
+            <label>City</label>
+            <input type="text" value={city} onChange={changeCity} />
+          </div>
+          <div>
+            <label>State</label>
+            <input type="text" value={state} onChange={changeState} />
+          </div>
+          <div>
+            <label>Zip Code</label>
+            <input type="text" value={zipCode} onChange={changeZipCode} />
+          </div>
+        </div>
+        <div>
+          <label>Department</label>
+          <input type="text" value={department} onChange={changeDepartment} />
+        </div>
+        <button onClick={transferValue}>Save</button>
+      </form>
+      <Link to="/table">Table Bla</Link>
+      {/* <DummyTable props={data} /> */}
+    </>
   );
 };
