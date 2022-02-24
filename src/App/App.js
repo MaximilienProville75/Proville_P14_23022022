@@ -1,6 +1,6 @@
 import "./App.css";
-
-import { useState } from "react";
+import React from "react";
+import { useState, useEffect } from "react";
 import { EmployeeRegistration } from "../pages/EmployeeRegistration/EmployeeRegistration";
 import { EmployeeTable } from "../pages/EmployeeTable/EmployeeTable";
 
@@ -10,10 +10,21 @@ import { DummyTable } from "../components/DummyTable/DummyTable";
 
 const App = () => {
   const [value, setValue] = useState("");
+  const [data, setData] = useState(localStorage.getItem("datas"));
 
   const pull_data = (data) => {
     setValue(data);
   };
+
+  React.useEffect(() => {
+    localStorage.setItem("datas", value);
+  }, []);
+
+  const dataSet = (data) => {
+    setData(value);
+  };
+  dataSet(data);
+  console.log(data);
 
   return (
     <>

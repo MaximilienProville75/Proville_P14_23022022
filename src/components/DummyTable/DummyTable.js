@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 export const DummyTable = (props) => {
   console.log(props);
   const blbl = props.props;
+  console.log(blbl);
 
   const tableRows = blbl.map((info) => {
     return (
