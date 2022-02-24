@@ -1,6 +1,6 @@
 import React from "react";
 import { useState, useEffect } from "react";
-import { EmployeeRegistration } from "../../pages/EmployeeRegistration/EmployeeRegistration";
+
 import { Link } from "react-router-dom";
 
 export const DummyTable = (props) => {

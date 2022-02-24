@@ -3,9 +3,6 @@ import "./EmployeeRegistration.css";
 import ReactDatePicker from "react-datepicker";
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { EmployeeTable } from "../EmployeeTable/EmployeeTable";
-// import { useLocalStorage } from "../../components/Hooks/localStorage";
-import { DummyTable } from "../../components/DummyTable/DummyTable";
 
 export const EmployeeRegistration = (props) => {
   const [data, setDataArr] = useState([]);
@@ -66,7 +63,6 @@ export const EmployeeRegistration = (props) => {
     };
     setDataArr([...data, val]);
     clearState();
-    // console.log(data);
   };
 
   const clearState = () => {
@@ -81,12 +77,6 @@ export const EmployeeRegistration = (props) => {
     setDepartment("");
   };
 
-  // console.log(firstName);
-  // console.log(lastName);
-  // console.log(dateBirth);
-  // console.log(startDate);
-  // console.log(street);
-  // console.log(city);
   props.func(data);
 
   return (
