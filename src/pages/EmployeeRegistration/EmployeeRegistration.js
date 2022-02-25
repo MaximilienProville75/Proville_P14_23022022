@@ -3,10 +3,10 @@ import "./EmployeeRegistration.css";
 import ReactDatePicker from "react-datepicker";
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import { useLocalStorage } from "../../Hooks/useLocalStorage";
 
 export const EmployeeRegistration = (props) => {
-  const [data, setDataArr] = useState([]);
-
+  const [data, setDataArr] = useLocalStorage("data", "");
   const [firstName, setFirstName] = useState("firstName", "");
   const [lastName, setLastName] = useState("lastName", "");
   const [dateBirth, setDateBirth] = useState(new Date());
@@ -18,8 +18,6 @@ export const EmployeeRegistration = (props) => {
   const [zipCode, setZipCode] = useState("zipCode", "");
   //* Department State
   const [department, setDepartment] = useState("department", "");
-
-  // let data = [];
 
   //? States Values
   const changeFirstName = (event) => {
@@ -122,7 +120,8 @@ export const EmployeeRegistration = (props) => {
         </div>
         <button onClick={transferValue}>Save</button>
       </form>
-      <Link to="/table">Table Bla</Link>
+      {/* <Link to="/table">Table Bla</Link> */}
+      <Link to="/table2">Blabla 2</Link>
       {/* <DummyTable props={data} /> */}
     </>
   );

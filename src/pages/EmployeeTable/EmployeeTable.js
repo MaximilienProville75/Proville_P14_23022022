@@ -1,8 +1,9 @@
 import React from "react";
 import "./EmployeeTable.css";
 import Table from "../../components/Table/Table";
+import { Link } from "react-router-dom";
 
-export const EmployeeTable = () => {
+export const EmployeeTable = (props) => {
   const columns = React.useMemo(
     () => [
       {
@@ -22,7 +23,7 @@ export const EmployeeTable = () => {
           },
           {
             Header: "Date of Birth",
-            accessor: "dateOfBirth",
+            accessor: "dateBirth",
           },
           {
             Header: "Street",
@@ -46,46 +47,13 @@ export const EmployeeTable = () => {
     []
   );
 
-  const range = (len) => {
-    const arr = [];
-    for (let i = 0; i < len; i++) {
-      arr.push(i);
-    }
-    return arr;
-  };
-
-  const cassie = () => {
-    return {
-      firstName: "Cassie",
-      lastName: "Brown",
-      department: "sales",
-      dateOfBirth: "blblbl",
-      street: "Liberty Avenue",
-      city: "Seattle",
-      state: "Washington",
-      zipCode: 309090,
-    };
-  };
-
-  function makeData(...lens) {
-    const makeDataLevel = (depth = 0) => {
-      const len = lens[depth];
-      return range(len).map((d) => {
-        return {
-          ...cassie(),
-          subRows: lens[depth + 1] ? makeDataLevel(depth + 1) : undefined,
-        };
-      });
-    };
-    return makeDataLevel();
-  }
-
-  const data = React.useMemo(() => makeData(), []);
+  const data = props.props;
 
   return (
     <>
       <div>EmployeeTable</div>
       <Table columns={columns} data={data} />
+      <Link to="/registration">return Registration Page</Link>
     </>
   );
 };
