@@ -2,6 +2,7 @@ import React from "react";
 import "./EmployeeTable.css";
 import Table from "../../components/Table/Table";
 import { Link } from "react-router-dom";
+import { useLocalStorage } from "../../Hooks/useLocalStorage";
 
 export const EmployeeTable = (props) => {
   const columns = React.useMemo(
@@ -47,6 +48,11 @@ export const EmployeeTable = (props) => {
     []
   );
 
+  // const clearData = (event) => {
+  //   event.preventDefault();
+  //   localStorage.clear();
+  // };
+
   const data = props.props;
 
   return (
@@ -55,6 +61,9 @@ export const EmployeeTable = (props) => {
       <div className="textLnk">
         <Link to="/registration">Home</Link>
       </div>
+      {/* <div className="clearData">
+        <button onClick={clearData}>Clear Table</button>
+      </div> */}
     </>
   );
 };

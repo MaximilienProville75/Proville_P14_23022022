@@ -28,7 +28,7 @@ function GlobalFilter({
           setValue(e.target.value);
           onChange(e.target.value);
         }}
-        placeholder={`${count} records...`}
+        placeholder=""
         style={{
           fontSize: "1.1rem",
           border: "0",
@@ -62,6 +62,14 @@ const Table = ({ columns, data }) => {
     []
   );
 
+  const clearData = (event) => {
+    event.preventDefault();
+    localStorage.clear();
+    data.splice(0, data.length);
+  };
+
+  console.log(data);
+
   const {
     getTableProps,
     getTableBodyProps,
@@ -86,7 +94,7 @@ const Table = ({ columns, data }) => {
       columns,
       data,
       defaultColumn,
-      initialState: { pageIndex: 1 },
+      initialState: { pageIndex: 0 },
     },
     useGlobalFilter,
     useSortBy,
@@ -105,7 +113,7 @@ const Table = ({ columns, data }) => {
             setPageSize(Number(e.target.value));
           }}
         >
-          {[5, 20, 30, 40, 50].map((pageSize) => (
+          {[5, 10, 15, 20, 25].map((pageSize) => (
             <option key={pageSize} value={pageSize}>
               {pageSize}
             </option>
@@ -183,6 +191,9 @@ const Table = ({ columns, data }) => {
         </div>
       </div>
       <br />
+      <div className="clearData">
+        <button onClick={clearData}>Clear Table</button>
+      </div>
     </>
   );
 };
