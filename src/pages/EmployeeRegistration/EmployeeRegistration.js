@@ -4,12 +4,14 @@ import ReactDatePicker from "react-datepicker";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { useLocalStorage } from "../../Hooks/useLocalStorage";
+import format from "date-fns/esm/fp/formatDuration";
 
 export const EmployeeRegistration = (props) => {
   const [data, setDataArr] = useLocalStorage("data", "");
   const [firstName, setFirstName] = useState("firstName", "");
   const [lastName, setLastName] = useState("lastName", "");
-  const [dateBirth, setDateBirth] = useState(new Date());
+  const [dateBirth, setDateBirth] = useState(format(new Date(), "yyyy/mm/dd"));
+
   const [startDate, setStartDate] = useState(new Date());
   //* Address States
   const [street, setStreet] = useState("street", "");
@@ -75,6 +77,7 @@ export const EmployeeRegistration = (props) => {
     setDepartment("");
   };
 
+  console.log(dateBirth);
   props.func(data);
 
   return (

@@ -51,9 +51,10 @@ export const EmployeeTable = (props) => {
 
   return (
     <>
-      <div>EmployeeTable</div>
       <Table columns={columns} data={data} />
-      <Link to="/registration">return Registration Page</Link>
+      <div className="textLnk">
+        <Link to="/registration">Home</Link>
+      </div>
     </>
   );
 };

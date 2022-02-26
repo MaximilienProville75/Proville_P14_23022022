@@ -1,8 +1,67 @@
 import React from "react";
 import "./Table.css";
-import { useTable, useSortBy, usePagination } from "react-table";
+import {
+  useTable,
+  useSortBy,
+  usePagination,
+  useGlobalFilter,
+  useAsyncDebounce,
+} from "react-table";
+
+function GlobalFilter({
+  preGlobalFilteredRows,
+  globalFilter,
+  setGlobalFilter,
+}) {
+  const count = preGlobalFilteredRows.length;
+  const [value, setValue] = React.useState(globalFilter);
+  const onChange = useAsyncDebounce((value) => {
+    setGlobalFilter(value || undefined);
+  }, 200);
+
+  return (
+    <span>
+      Search:{" "}
+      <input
+        value={value || ""}
+        onChange={(e) => {
+          setValue(e.target.value);
+          onChange(e.target.value);
+        }}
+        placeholder={`${count} records...`}
+        style={{
+          fontSize: "1.1rem",
+          border: "0",
+        }}
+      />
+    </span>
+  );
+}
+// Define a default UI for filtering
+function DefaultColumnFilter({
+  column: { filterValue, preFilteredRows, setFilter },
+}) {
+  const count = preFilteredRows.length;
+
+  return (
+    <input
+      value={filterValue || ""}
+      onChange={(e) => {
+        setFilter(e.target.value || undefined); // Set undefined to remove the filter entirely
+      }}
+      placeholder={`Search ${count} records...`}
+    />
+  );
+}
 
 const Table = ({ columns, data }) => {
+  const defaultColumn = React.useMemo(
+    () => ({
+      Filter: DefaultColumnFilter,
+    }),
+    []
+  );
+
   const {
     getTableProps,
     getTableBodyProps,
@@ -16,26 +75,50 @@ const Table = ({ columns, data }) => {
     pageCount,
     gotoPage,
     nextPage,
+    state,
     previousPage,
+    preGlobalFilteredRows,
     setPageSize,
+    setGlobalFilter,
     state: { pageIndex, pageSize },
   } = useTable(
     {
       columns,
       data,
+      defaultColumn,
       initialState: { pageIndex: 1 },
     },
+    useGlobalFilter,
     useSortBy,
     usePagination
   );
 
-  // We don't want to render all 2000 rows for this example, so cap
-  // it at 20 for this use case
   const firstPageRows = rows.slice(0, 40);
 
   return (
     <>
-      <table {...getTableProps()}>
+      <div className="pageCounter">
+        <span>Show </span>
+        <select
+          value={pageSize}
+          onChange={(e) => {
+            setPageSize(Number(e.target.value));
+          }}
+        >
+          {[5, 20, 30, 40, 50].map((pageSize) => (
+            <option key={pageSize} value={pageSize}>
+              {pageSize}
+            </option>
+          ))}
+        </select>
+        <span>entries</span>
+      </div>
+      <GlobalFilter
+        preGlobalFilteredRows={preGlobalFilteredRows}
+        globalFilter={state.globalFilter}
+        setGlobalFilter={setGlobalFilter}
+      />
+      <table {...getTableProps()} className="employeeTable">
         <thead>
           {headerGroups.map((headerGroup) => (
             <tr {...headerGroup.getHeaderGroupProps()}>
@@ -50,7 +133,7 @@ const Table = ({ columns, data }) => {
                       ? column.isSortedDesc
                         ? " 🔽"
                         : " 🔼"
-                      : ""}
+                      : "🔽"}
                   </span>
                 </th>
               ))}
@@ -73,26 +156,18 @@ const Table = ({ columns, data }) => {
         </tbody>
       </table>
       <div className="pagination">
-        <button onClick={() => gotoPage(0)} disabled={!canPreviousPage}>
-          {"<<"}
-        </button>{" "}
-        <button onClick={() => previousPage()} disabled={!canPreviousPage}>
-          {"<"}
-        </button>{" "}
-        <button onClick={() => nextPage()} disabled={!canNextPage}>
-          {">"}
-        </button>{" "}
-        <button onClick={() => gotoPage(pageCount - 1)} disabled={!canNextPage}>
-          {">>"}
-        </button>{" "}
-        <span>
-          Page{" "}
-          <strong>
-            {pageIndex + 1} of {pageOptions.length}
-          </strong>{" "}
-        </span>
-        <span>
-          | Go to page:{" "}
+        <div className="pageNumbering">
+          <span>
+            Showing{" "}
+            <strong>
+              {pageIndex + 1} to {pageOptions.length} of {pageOptions.length}
+            </strong>{" "}
+          </span>
+        </div>
+        <div className="pageNumberSwitch">
+          <button onClick={() => previousPage()} disabled={!canPreviousPage}>
+            {"Previous"}
+          </button>{" "}
           <input
             type="number"
             defaultValue={pageIndex + 1}
@@ -102,22 +177,12 @@ const Table = ({ columns, data }) => {
             }}
             style={{ width: "100px" }}
           />
-        </span>{" "}
-        <select
-          value={pageSize}
-          onChange={(e) => {
-            setPageSize(Number(e.target.value));
-          }}
-        >
-          {[5, 20, 30, 40, 50].map((pageSize) => (
-            <option key={pageSize} value={pageSize}>
-              Show {pageSize}
-            </option>
-          ))}
-        </select>
+          <button onClick={() => nextPage()} disabled={!canNextPage}>
+            {"Next"}
+          </button>{" "}
+        </div>
       </div>
       <br />
-      <div>Showing the first 20 results of {rows.length} rows</div>
     </>
   );
 };
