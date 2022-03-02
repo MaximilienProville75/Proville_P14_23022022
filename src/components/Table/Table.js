@@ -37,7 +37,6 @@ function GlobalFilter({
     </span>
   );
 }
-// Define a default UI for filtering
 function DefaultColumnFilter({
   column: { filterValue, preFilteredRows, setFilter },
 }) {
@@ -47,7 +46,7 @@ function DefaultColumnFilter({
     <input
       value={filterValue || ""}
       onChange={(e) => {
-        setFilter(e.target.value || undefined); // Set undefined to remove the filter entirely
+        setFilter(e.target.value || undefined);
       }}
       placeholder={`Search ${count} records...`}
     />
@@ -62,6 +61,7 @@ const Table = ({ columns, data }) => {
     []
   );
 
+  // Ajouter Clear le state
   const clearData = (event) => {
     event.preventDefault();
     localStorage.clear();

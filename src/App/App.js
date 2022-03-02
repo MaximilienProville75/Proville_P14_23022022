@@ -5,7 +5,7 @@ import { EmployeeRegistration } from "../pages/EmployeeRegistration/EmployeeRegi
 import { EmployeeTable } from "../pages/EmployeeTable/EmployeeTable";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
-// import { DummyTable } from "../components/DummyTable/DummyTable";
+// ajouter UI modal ou un petit styling
 
 const App = () => {
   const [value, setValue] = useState("");
@@ -22,7 +22,6 @@ const App = () => {
             path="/registration"
             element={<EmployeeRegistration func={pull_data} />}
           />
-          {/* <Route path="/table" element={<DummyTable props={value} />} /> */}
           <Route path="/table2" element={<EmployeeTable props={value} />} />
         </Routes>
       </BrowserRouter>

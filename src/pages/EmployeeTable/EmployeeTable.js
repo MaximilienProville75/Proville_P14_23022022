@@ -2,7 +2,6 @@ import React from "react";
 import "./EmployeeTable.css";
 import Table from "../../components/Table/Table";
 import { Link } from "react-router-dom";
-import { useLocalStorage } from "../../Hooks/useLocalStorage";
 
 export const EmployeeTable = (props) => {
   const columns = React.useMemo(
