@@ -124,9 +124,8 @@ export const EmployeeRegistration = (props) => {
         </div>
         <button onClick={transferValue}>Save</button>
       </form>
-      {/* <Link to="/table">Table Bla</Link> */}
-      <Link to="/table2">Blabla 2</Link>
-      {/* <DummyTable props={data} /> */}
+
+      <Link to="/table">Blabla 2</Link>
     </>
   );
 };
