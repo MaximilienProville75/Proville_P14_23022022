@@ -62,11 +62,11 @@ const Table = ({ columns, data }) => {
   );
 
   // Ajouter Clear le state
-  const clearData = (event) => {
-    event.preventDefault();
-    localStorage.clear();
-    data.splice(0, data.length);
-  };
+  // const clearData = (event) => {
+  //   event.preventDefault();
+  //   localStorage.clear();
+  //   data.splice(0, data.length);
+  // };
 
   console.log(data);
 
@@ -195,9 +195,9 @@ const Table = ({ columns, data }) => {
         </div>
       </div>
       <br />
-      <div className="clearData">
+      {/* <div className="clearData">
         <button onClick={clearData}>Clear Table</button>
-      </div>
+      </div> */}
     </>
   );
 };
