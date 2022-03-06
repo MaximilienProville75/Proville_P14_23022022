@@ -83,7 +83,7 @@ export const EmployeeRegistration = (props) => {
 
   return (
     <>
-      <form>
+      <form class="place-content-center">
         <div className="inputWrapper">
           <label>First Name</label>
           <input type="text" value={firstName} onChange={changeFirstName} />
@@ -125,7 +125,7 @@ export const EmployeeRegistration = (props) => {
         <button onClick={transferValue}>Save</button>
       </form>
 
-      <Link to="/table">Blabla 2</Link>
+      <Link to="/table">To the Table</Link>
     </>
   );
 };

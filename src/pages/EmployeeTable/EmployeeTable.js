@@ -5,6 +5,8 @@ import { Link } from "react-router-dom";
 import { useState } from "react";
 
 export const EmployeeTable = (props) => {
+  let data = props.props;
+
   const columns = React.useMemo(
     () => [
       {
@@ -41,7 +43,7 @@ export const EmployeeTable = (props) => {
           },
           {
             Header: "State",
-            accessor: "state",
+            accessor: "state2",
           },
           {
             Header: "Zip Code",
@@ -72,7 +74,7 @@ export const EmployeeTable = (props) => {
       dateBirth,
       street,
       city,
-      state,
+      state2,
       zipCode,
     },
     setState,
@@ -82,15 +84,14 @@ export const EmployeeTable = (props) => {
     setState({ ...initialState });
   };
 
+  // Ajouter Clear le state
   const clearData = (event) => {
     event.preventDefault();
-    // localStorage.clear();
-    clearState();
-    console.log(initialState);
-    console.log(data);
+    localStorage.clear();
+    data.splice(0, data.length);
+    data = initialState;
+    props.func(data);
   };
-
-  const data = props.props;
 
   return (
     <>

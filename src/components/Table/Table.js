@@ -7,6 +7,7 @@ import {
   useGlobalFilter,
   useAsyncDebounce,
 } from "react-table";
+import { useState } from "react";
 
 function GlobalFilter({
   preGlobalFilteredRows,
@@ -60,15 +61,9 @@ const Table = ({ columns, data }) => {
     }),
     []
   );
+  // data = JSON.parse(data);
 
-  // Ajouter Clear le state
-  // const clearData = (event) => {
-  //   event.preventDefault();
-  //   localStorage.clear();
-  //   data.splice(0, data.length);
-  // };
-
-  console.log(data);
+  // console.log(data);
 
   const {
     getTableProps,
@@ -195,9 +190,9 @@ const Table = ({ columns, data }) => {
         </div>
       </div>
       <br />
-      {/* <div className="clearData">
-        <button onClick={clearData}>Clear Table</button>
-      </div> */}
+      <div className="clearData">
+        {/* <button onClick={clearData}>Clear Table</button> */}
+      </div>
     </>
   );
 };
