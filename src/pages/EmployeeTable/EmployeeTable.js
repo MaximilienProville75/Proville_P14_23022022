@@ -102,14 +102,7 @@ export const EmployeeTable = (props) => {
           </div>
           <div className="textLnk">
             <Link to="/registration">Home</Link>
-          </div>
-          <div className="mx-auto w-44">
-            <button
-              onClick={clearData}
-              class="rounded-xl border-4 px-8 ml-2 border-purple-700/70 hover:text-white hover:bg-purple-700/70 hover:border-purple-300  ring-4 hover:ring-violet-500 shadow-lg shadow-purple-700/50"
-            >
-              Clear Table
-            </button>
+            <button onClick={clearData}>Clear Table</button>
           </div>
         </main>
       </div>

@@ -8,7 +8,6 @@ import format from "date-fns/esm/fp/formatDuration";
 
 export const EmployeeRegistration = (props) => {
   const [data, setDataArr] = useLocalStorage("data", "");
-  // remonter dans app js --> probleme resolut
   const [firstName, setFirstName] = useState("firstName", "");
   const [lastName, setLastName] = useState("lastName", "");
   const [dateBirth, setDateBirth] = useState(format(new Date(), "yyyy/mm/dd"));
@@ -83,49 +82,63 @@ export const EmployeeRegistration = (props) => {
 
   return (
     <>
-      <form class="place-content-center">
-        <div className="inputWrapper">
-          <label>First Name</label>
-          <input type="text" value={firstName} onChange={changeFirstName} />
-        </div>
-        <div className="inputWrapper">
-          <label>Last Name</label>
-          <input type="text" value={lastName} onChange={changeLastName} />
-        </div>
-        <ReactDatePicker
-          selected={dateBirth}
-          onChange={(date) => setDateBirth(date)}
-        />
-        <ReactDatePicker
-          selected={startDate}
-          onChange={(date) => setStartDate(date)}
-        />
-        <div className="addressInfos">
-          <div className="inputWrapper">
-            <label>Street</label>
-            <input type="text" value={street} onChange={changeStreet} />
-          </div>
-          <div className="inputWrapper">
-            <label>City</label>
-            <input type="text" value={city} onChange={changeCity} />
-          </div>
-          <div>
-            <label>State</label>
-            <input type="text" value={state} onChange={changeState} />
-          </div>
-          <div>
-            <label>Zip Code</label>
-            <input type="text" value={zipCode} onChange={changeZipCode} />
-          </div>
-        </div>
-        <div>
-          <label>Department</label>
-          <input type="text" value={department} onChange={changeDepartment} />
-        </div>
-        <button onClick={transferValue}>Save</button>
-      </form>
-
-      <Link to="/table">To the Table</Link>
+      <div class="min-h-screen text-gray-900 flex justify-center bg-gray-100 py-12 px-4 sm:px-6 lg:px-8">
+        <form class="border-8  flex flex-col gap-10 rounded-2xl  bg-purple-300/40 shadow overflow-hidden border-b border-purple-200 min-h-auto">
+          <main class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 pt-4 flex flex-col gap-6">
+            <div className="flex flex-col">
+              <label>First Name</label>
+              <input type="text" value={firstName} onChange={changeFirstName} />
+            </div>
+            <div className="flex flex-col">
+              <label>Last Name</label>
+              <input type="text" value={lastName} onChange={changeLastName} />
+            </div>
+            <div className="flex flex-col">
+              <label>BirthDate</label>
+              <ReactDatePicker
+                selected={dateBirth}
+                onChange={(date) => setDateBirth(date)}
+                type="date"
+              />
+            </div>
+            <div className="flex flex-col">
+              <label>Date of Start</label>
+              <ReactDatePicker
+                selected={startDate}
+                onChange={(date) => setStartDate(date)}
+              />
+            </div>
+            <div className="addressInfos">
+              <div className="flex flex-col">
+                <label>Street</label>
+                <input type="text" value={street} onChange={changeStreet} />
+              </div>
+              <div className="flex flex-col">
+                <label>City</label>
+                <input type="text" value={city} onChange={changeCity} />
+              </div>
+              <div className="flex flex-col">
+                <label>State</label>
+                <input type="text" value={state} onChange={changeState} />
+              </div>
+              <div className="flex flex-col">
+                <label>Zip Code</label>
+                <input type="text" value={zipCode} onChange={changeZipCode} />
+              </div>
+            </div>
+            <div className="flex flex-col">
+              <label>Department</label>
+              <input
+                type="text"
+                value={department}
+                onChange={changeDepartment}
+              />
+            </div>
+            <button onClick={transferValue}>Save</button>
+          </main>
+          <Link to="/table">To the Table</Link>
+        </form>
+      </div>
     </>
   );
 };
