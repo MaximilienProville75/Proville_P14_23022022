@@ -5,6 +5,7 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import { useLocalStorage } from "../../Hooks/useLocalStorage";
 import format from "date-fns/esm/fp/formatDuration";
+import { PopUp } from "../../components/PopUp/PopUp";
 
 export const EmployeeRegistration = (props) => {
   const [data, setDataArr] = useLocalStorage("data", "");
@@ -82,8 +83,8 @@ export const EmployeeRegistration = (props) => {
 
   return (
     <>
-      <div class="min-h-screen text-gray-900 flex justify-center bg-gray-100 py-12 px-4 sm:px-6 lg:px-8">
-        <form class="border-8  flex flex-col gap-10 rounded-2xl  bg-purple-300/40 shadow overflow-hidden border-b border-purple-200 min-h-auto">
+      <div class="min-h-screen text-gray-900 flex justify-center bg-gray-100 flex-col py-12 px-4 sm:px-6 lg:px-8">
+        <form class="border-8  flex flex-col gap-10 rounded-2xl  bg-purple-300/40 shadow overflow-hidden border-b border-purple-200 min-h-auto max-w-xl m-auto">
           <main class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 pt-4 flex flex-col gap-6">
             <div className="flex flex-col">
               <label>First Name</label>
@@ -134,10 +135,16 @@ export const EmployeeRegistration = (props) => {
                 onChange={changeDepartment}
               />
             </div>
-            <button onClick={transferValue}>Save</button>
           </main>
-          <Link to="/table">To the Table</Link>
         </form>
+        <button
+          onClick={transferValue}
+          class="relative inline-flex items-center px-2 py-2 border border-gray-300 bg-white text-sm font-medium text-gray-700 bg-purple-100 hover:bg-purple-300/40 mt-10"
+        >
+          Save
+        </button>
+        <Link to="/table">To the Table</Link>
+        <PopUp props={data} />
       </div>
     </>
   );
