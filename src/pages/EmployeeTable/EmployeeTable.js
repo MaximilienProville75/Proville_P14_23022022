@@ -95,12 +95,23 @@ export const EmployeeTable = (props) => {
 
   return (
     <>
-      <Table columns={columns} data={data} />
-      <div className="textLnk">
-        <Link to="/registration">Home</Link>
-      </div>
-      <div className="clearData">
-        <button onClick={clearData}>Clear Table</button>
+      <div class="min-h-screen bg-gray-100 text-gray-900">
+        <main class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 pt-4">
+          <div class="mt-4">
+            <Table columns={columns} data={data} />
+          </div>
+          <div className="textLnk">
+            <Link to="/registration">Home</Link>
+          </div>
+          <div className="mx-auto w-44">
+            <button
+              onClick={clearData}
+              class="rounded-xl border-4 px-8 ml-2 border-purple-700/70 hover:text-white hover:bg-purple-700/70 hover:border-purple-300  ring-4 hover:ring-violet-500 shadow-lg shadow-purple-700/50"
+            >
+              Clear Table
+            </button>
+          </div>
+        </main>
       </div>
     </>
   );
