@@ -106,7 +106,7 @@ const Table = ({ columns, data }) => {
 
   return (
     <>
-      <div class="flex gap-x-2">
+      <div className="flex gap-x-2">
         <label>
           <span className="sr-only">Items Per Page</span>
           <select
@@ -130,15 +130,15 @@ const Table = ({ columns, data }) => {
           setGlobalFilter={setGlobalFilter}
         />
       </div>
-      <div class="mt-2 flex flex-col">
-        <div class="-my-2 overflow-x-auto -mx-4 sm:-mx-6 lg:-mx-8">
-          <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
-            <div class="shadow overflow-hidden border-b border-purple-200 sm:rounded-lg">
+      <div className="mt-2 flex flex-col">
+        <div className="-my-2 overflow-x-auto -mx-4 sm:-mx-6 lg:-mx-8">
+          <div className="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
+            <div className="shadow overflow-hidden border-b border-purple-200 sm:rounded-lg">
               <table
                 {...getTableProps()}
-                class="min-w-full divide-y divide-purple-200 shadow"
+                className="min-w-full divide-y divide-purple-200 shadow"
               >
-                <thead class="bg-purple-300/40">
+                <thead className="bg-purple-300/40">
                   {headerGroups.map((headerGroup) => (
                     <tr {...headerGroup.getHeaderGroupProps()}>
                       {headerGroup.headers.map((column) => (

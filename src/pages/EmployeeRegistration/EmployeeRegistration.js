@@ -6,13 +6,15 @@ import { Link } from "react-router-dom";
 import { useLocalStorage } from "../../Hooks/useLocalStorage";
 import format from "date-fns/esm/fp/formatDuration";
 import { PopUp } from "../../components/PopUp/PopUp";
+import "react-datepicker/dist/react-datepicker.css";
 
 export const EmployeeRegistration = (props) => {
   const [data, setDataArr] = useLocalStorage("data", "");
+  //*
   const [firstName, setFirstName] = useState("firstName", "");
   const [lastName, setLastName] = useState("lastName", "");
-  const [dateBirth, setDateBirth] = useState(format(new Date(), "yyyy/mm/dd"));
-
+  //* Dates [.toDateString()]
+  const [dateBirth, setDateBirth] = useState(new Date());
   const [startDate, setStartDate] = useState(new Date());
   //* Address States
   const [street, setStreet] = useState("street", "");
@@ -83,9 +85,9 @@ export const EmployeeRegistration = (props) => {
 
   return (
     <>
-      <div class="min-h-screen text-gray-900 flex justify-center bg-gray-100 flex-col py-12 px-4 sm:px-6 lg:px-8">
-        <form class="border-8  flex flex-col gap-10 rounded-2xl  bg-purple-300/40 shadow overflow-hidden border-b border-purple-200 min-h-auto max-w-xl m-auto">
-          <main class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 pt-4 flex flex-col gap-6">
+      <div className="min-h-screen text-gray-900 flex justify-center bg-gray-100 flex-col py-12 px-4 sm:px-6 lg:px-8">
+        <form className="border-8  flex flex-col gap-10 rounded-2xl  bg-purple-300/40 shadow overflow-hidden border-b border-purple-200 min-h-auto max-w-xl m-auto">
+          <main className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 pt-4 flex flex-col gap-6">
             <div className="flex flex-col">
               <label>First Name</label>
               <input type="text" value={firstName} onChange={changeFirstName} />
@@ -107,6 +109,7 @@ export const EmployeeRegistration = (props) => {
               <ReactDatePicker
                 selected={startDate}
                 onChange={(date) => setStartDate(date)}
+                type="date"
               />
             </div>
             <div className="addressInfos">
@@ -139,7 +142,7 @@ export const EmployeeRegistration = (props) => {
         </form>
         <button
           onClick={transferValue}
-          class="relative inline-flex items-center px-2 py-2 border border-gray-300 bg-white text-sm font-medium text-gray-700 bg-purple-100 hover:bg-purple-300/40 mt-10"
+          className="relative inline-flex items-center px-2 py-2 border border-gray-300 text-sm font-medium text-gray-700 bg-purple-100 hover:bg-purple-300/40 mt-10"
         >
           Save
         </button>

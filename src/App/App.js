@@ -23,19 +23,19 @@ const App = () => {
     department: "",
   };
 
-  const [
-    {
-      firstName,
-      lastName,
-      department,
-      dateBirth,
-      street,
-      city,
-      state2,
-      zipCode,
-    },
-    setState,
-  ] = useState(initialState);
+  // const [
+  //   {
+  //     firstName,
+  //     lastName,
+  //     department,
+  //     dateBirth,
+  //     street,
+  //     city,
+  //     state2,
+  //     zipCode,
+  //   },
+  //   setState,
+  // ] = useState(initialState);
 
   const pull_data = (data) => {
     setValue(data);

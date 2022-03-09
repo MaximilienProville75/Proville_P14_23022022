@@ -84,15 +84,6 @@ export const EmployeeTable = (props) => {
     setState({ ...initialState });
   };
 
-  // Ajouter Clear le state
-  const clearData = (event) => {
-    event.preventDefault();
-    localStorage.clear();
-    data.splice(0, data.length);
-    data = initialState;
-    props.func(data);
-  };
-
   return (
     <>
       <div class="min-h-screen bg-gray-100 text-gray-900">
@@ -102,7 +93,6 @@ export const EmployeeTable = (props) => {
           </div>
           <div className="textLnk">
             <Link to="/registration">Home</Link>
-            <button onClick={clearData}>Clear Table</button>
           </div>
         </main>
       </div>

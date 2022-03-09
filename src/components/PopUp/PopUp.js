@@ -2,6 +2,7 @@ import React from "react";
 
 export const PopUp = (props) => {
   const data = props.props;
+  console.log(data);
   return (
     <div>
       <div>
