@@ -67,9 +67,6 @@ const Table = ({ columns, data }) => {
     }),
     []
   );
-  // data = JSON.parse(data);
-
-  // console.log(data);
 
   const {
     getTableProps,
@@ -142,8 +139,6 @@ const Table = ({ columns, data }) => {
                   {headerGroups.map((headerGroup) => (
                     <tr {...headerGroup.getHeaderGroupProps()}>
                       {headerGroup.headers.map((column) => (
-                        // Add the sorting props to control sorting. For this example
-                        // we can add them into the header props
                         <th
                           scope="col"
                           className="group px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
@@ -153,7 +148,6 @@ const Table = ({ columns, data }) => {
                         >
                           <div className="flex items-center justify-between">
                             {column.render("Header")}
-                            {/* Add a sort direction indicator */}
                             <span>
                               {column.isSorted ? (
                                 column.isSortedDesc ? (

@@ -29,10 +29,10 @@ export const EmployeeTable = (props) => {
             Header: "Date of Birth",
             accessor: "dateBirth",
           },
-          // {
-          //   Header: "Start Date",
-          //   accessor: "startDate",
-          // },
+          {
+            Header: "Start Date",
+            accessor: "startDate",
+          },
           {
             Header: "Street",
             accessor: "street",
@@ -54,35 +54,6 @@ export const EmployeeTable = (props) => {
     ],
     []
   );
-
-  const initialState = {
-    firstName: "",
-    lastName: "",
-    dateBirth: "",
-    street: "",
-    city: "",
-    state: "",
-    zipCode: "",
-    department: "",
-  };
-
-  const [
-    {
-      firstName,
-      lastName,
-      department,
-      dateBirth,
-      street,
-      city,
-      state2,
-      zipCode,
-    },
-    setState,
-  ] = useState(initialState);
-
-  const clearState = () => {
-    setState({ ...initialState });
-  };
 
   return (
     <>

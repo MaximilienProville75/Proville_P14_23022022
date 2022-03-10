@@ -10,18 +10,19 @@ import { useLocalStorage } from "../Hooks/useLocalStorage";
 
 const App = () => {
   const [value, setValue] = useLocalStorage("value", "");
-  // const [value2, setValue2] = useState("");
-
-  const initialState = {
-    firstName: "",
-    lastName: "",
-    dateBirth: "",
-    street: "",
-    city: "",
-    state: "",
-    zipCode: "",
-    department: "",
-  };
+  const emptyArr = [
+    {
+      firstName: "",
+      lastName: "",
+      department: "",
+      dateBirth: "",
+      startDate: "",
+      street: "",
+      city: "",
+      state2: "",
+      zipCode: "",
+    },
+  ];
 
   // const [
   //   {
@@ -42,14 +43,25 @@ const App = () => {
     console.log(data);
   };
 
-  const provideData = () => {
-    if (value === null) {
-      value = initialState;
-      return <EmployeeTable props={value} func={pull_data} />;
+  const generateEmptTable = (value) => {
+    if (value === null || value === undefined || value === "") {
+      return emptyArr;
     } else {
-      return <EmployeeTable props={value} func={pull_data} />;
+      return value;
     }
   };
+
+  // const provideData = () => {
+  //   if (value === null) {
+  //     value = initialState;
+  //     return <EmployeeTable props={value} func={pull_data} />;
+  //   } else {
+  //     return <EmployeeTable props={value} func={pull_data} />;
+  //   }
+  // };
+  console.log(value);
+  console.log(emptyArr);
+  generateEmptTable(value);
 
   return (
     <>
@@ -59,7 +71,15 @@ const App = () => {
             path="/registration"
             element={<EmployeeRegistration func={pull_data} />}
           />
-          <Route path="/table" element={provideData()} />
+          <Route
+            path="/table"
+            element={
+              <EmployeeTable
+                props={generateEmptTable(value)}
+                func={pull_data}
+              />
+            }
+          />
         </Routes>
       </BrowserRouter>
     </>
