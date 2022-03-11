@@ -133,7 +133,7 @@ const Table = ({ columns, data }) => {
             <div className="shadow overflow-hidden border-b border-purple-200 sm:rounded-lg">
               <table
                 {...getTableProps()}
-                className="min-w-full divide-y divide-purple-200 shadow"
+                className="min-w-full divide-y divide-purple-200 shadow mt-3"
               >
                 <thead className="bg-purple-300/40">
                   {headerGroups.map((headerGroup) => (

@@ -24,23 +24,8 @@ const App = () => {
     },
   ];
 
-  // const [
-  //   {
-  //     firstName,
-  //     lastName,
-  //     department,
-  //     dateBirth,
-  //     street,
-  //     city,
-  //     state2,
-  //     zipCode,
-  //   },
-  //   setState,
-  // ] = useState(initialState);
-
   const pull_data = (data) => {
     setValue(data);
-    console.log(data);
   };
 
   const generateEmptTable = (value) => {
@@ -51,16 +36,6 @@ const App = () => {
     }
   };
 
-  // const provideData = () => {
-  //   if (value === null) {
-  //     value = initialState;
-  //     return <EmployeeTable props={value} func={pull_data} />;
-  //   } else {
-  //     return <EmployeeTable props={value} func={pull_data} />;
-  //   }
-  // };
-  console.log(value);
-  console.log(emptyArr);
   generateEmptTable(value);
 
   return (

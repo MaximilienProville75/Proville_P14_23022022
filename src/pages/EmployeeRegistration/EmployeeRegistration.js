@@ -7,23 +7,25 @@ import { useLocalStorage } from "../../Hooks/useLocalStorage";
 import format from "date-fns/esm/fp/formatDuration";
 import { PopUp } from "../../components/PopUp/PopUp";
 import "react-datepicker/dist/react-datepicker.css";
-import { DropdownStates } from "../../components/DropdownStates/DropdownStates";
 
 export const EmployeeRegistration = (props) => {
   const [data, setDataArr] = useLocalStorage("data", "");
   //*
-  const [firstName, setFirstName] = useState("firstName", "");
-  const [lastName, setLastName] = useState("lastName", "");
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
   //* Dates [.toDateString()]
   const [dateBirth, setDateBirth] = useState(new Date());
   const [startDate, setStartDate] = useState(new Date());
+
   //* Address States
-  const [street, setStreet] = useState("street", "");
-  const [city, setCity] = useState("city", "");
-  const [state, setState] = useState("state", "");
-  const [zipCode, setZipCode] = useState("zipCode", "");
+  const [street, setStreet] = useState("");
+  const [city, setCity] = useState("");
+  const [state, setState] = useState("");
+  const [zipCode, setZipCode] = useState("");
   //* Department State
-  const [department, setDepartment] = useState("department", "");
+  const [department, setDepartment] = useState("");
+
+  const [buttonPopUp, setButtonPopUp] = useState(false);
 
   //? States Values
   const changeFirstName = (event) => {
@@ -53,6 +55,7 @@ export const EmployeeRegistration = (props) => {
 
   const transferValue = (event) => {
     event.preventDefault();
+    setButtonPopUp(true);
 
     const val = {
       firstName,
@@ -80,51 +83,95 @@ export const EmployeeRegistration = (props) => {
     setZipCode("");
     setDepartment("");
   };
+  // const updatedStringDate = dateBirth.toISOString().substring(0, 10);
 
-  console.log(dateBirth);
   props.func(data);
 
   return (
     <>
-      <div className="min-h-screen text-gray-900 flex justify-center bg-gray-100 flex-col py-12 px-4 sm:px-6 lg:px-8">
-        <form className="border-8  flex flex-col gap-10 rounded-2xl  bg-purple-300/40 shadow overflow-hidden border-b border-purple-200 min-h-auto max-w-xl m-auto">
+      <div className="min-h-screen text-gray-900 flex justify-center bg-purple-500/70 flex-col py-12 px-4 sm:px-6 lg:px-8">
+        <Link to="/table" className="text-center">
+          To the Table
+        </Link>
+
+        <form className="border-8  flex flex-col gap-10 rounded-2xl  bg-white shadow  border-b border-purple-500 max-h-auto max-w-xl m-auto p-10">
           <main className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 pt-4 flex flex-col gap-6">
-            <div className="flex flex-col">
-              <label>First Name</label>
-              <input type="text" value={firstName} onChange={changeFirstName} />
+            <div className="flex flex-col ">
+              <label className="first-letter:text-xl first-letter:text-purple-500 text-extrabold">
+                First Name
+              </label>
+              <input
+                type="text"
+                className="border-purple-500 border-2"
+                value={firstName}
+                onChange={changeFirstName}
+              />
             </div>
             <div className="flex flex-col">
-              <label>Last Name</label>
-              <input type="text" value={lastName} onChange={changeLastName} />
+              <label className="first-letter:text-xl first-letter:text-purple-500 text-extrabold">
+                Last Name
+              </label>
+              <input
+                type="text"
+                className="border-purple-500 border-2"
+                value={lastName}
+                onChange={changeLastName}
+              />
             </div>
             <div className="flex flex-col">
-              <label>BirthDate</label>
+              <label className="first-letter:text-xl first-letter:text-purple-500 text-extrabold">
+                BirthDate
+              </label>
               <ReactDatePicker
                 selected={dateBirth}
                 onChange={(date) => setDateBirth(date)}
                 type="date"
+                className="border-purple-500 border-2"
               />
             </div>
             <div className="flex flex-col">
-              <label>Date of Start</label>
+              <label className="first-letter:text-xl first-letter:text-purple-500 text-extrabold">
+                Date of Start
+              </label>
               <ReactDatePicker
                 selected={startDate}
                 onChange={(date) => setStartDate(date)}
                 type="date"
+                className="border-purple-500 border-2"
               />
             </div>
             <div className="addressInfos">
               <div className="flex flex-col">
-                <label>Street</label>
-                <input type="text" value={street} onChange={changeStreet} />
+                <label className="first-letter:text-xl first-letter:text-purple-500 text-extrabold">
+                  Street
+                </label>
+                <input
+                  type="text"
+                  className="border-purple-500 border-2"
+                  value={street}
+                  onChange={changeStreet}
+                />
+              </div>
+              <div className="flex flex-col ">
+                <label className="first-letter:text-xl first-letter:text-purple-500 text-extrabold ">
+                  City
+                </label>
+                <input
+                  type="text"
+                  className="border-purple-500 border-2"
+                  value={city}
+                  onChange={changeCity}
+                />
               </div>
               <div className="flex flex-col">
-                <label>City</label>
-                <input type="text" value={city} onChange={changeCity} />
-              </div>
-              <div className="flex flex-col">
-                <label>State</label>
-                <select value={state} onChange={changeState}>
+                <label className="first-letter:text-xl first-letter:text-purple-500 text-extrabold">
+                  State
+                </label>
+                <select
+                  value={state}
+                  className="border-purple-500 border-2"
+                  onChange={changeState}
+                >
                   <option value="AL">AL</option>
                   <option value="AK">AK</option>
                   <option value="AZ">AZ</option>
@@ -179,13 +226,26 @@ export const EmployeeRegistration = (props) => {
                 </select>
               </div>
               <div className="flex flex-col">
-                <label>Zip Code</label>
-                <input type="text" value={zipCode} onChange={changeZipCode} />
+                <label className="first-letter:text-xl first-letter:text-purple-500 text-extrabold">
+                  Zip Code
+                </label>
+                <input
+                  type="text"
+                  className="border-purple-500 border-2"
+                  value={zipCode}
+                  onChange={changeZipCode}
+                />
               </div>
             </div>
             <div className="flex flex-col">
-              <label>Department</label>
-              <select value={department} onChange={changeDepartment}>
+              <label className="first-letter:text-xl first-letter:text-purple-500 text-extrabold">
+                Department
+              </label>
+              <select
+                value={department}
+                className="border-purple-500 border-2"
+                onChange={changeDepartment}
+              >
                 <option>Sales</option>
                 <option>Marketing</option>
                 <option>Engineering</option>
@@ -201,8 +261,11 @@ export const EmployeeRegistration = (props) => {
         >
           Save
         </button>
-        <Link to="/table">To the Table</Link>
-        <PopUp props={data} />
+        <PopUp trigger={buttonPopUp} setTrigger={setButtonPopUp}>
+          <h1 className="font-sans text-2xl font-bold first-letter:text-purple-500 first-letter:text-4xl text-center">
+            Employee Created!
+          </h1>
+        </PopUp>
       </div>
     </>
   );
