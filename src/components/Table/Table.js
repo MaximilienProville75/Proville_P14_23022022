@@ -7,7 +7,6 @@ import {
   useGlobalFilter,
   useAsyncDebounce,
 } from "react-table";
-import { useState } from "react";
 import {
   ChevronDoubleLeftIcon,
   ChevronLeftIcon,

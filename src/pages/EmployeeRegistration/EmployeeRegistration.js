@@ -89,87 +89,90 @@ export const EmployeeRegistration = (props) => {
 
   return (
     <>
-      <div className="min-h-screen text-gray-900 flex justify-center bg-purple-500/70 flex-col py-12 px-4 sm:px-6 lg:px-8">
-        <Link to="/table" className="text-center">
+      <div className="min-h-screen text-gray-900 flex justify-center bg-purple-300 flex-col py-12 px-4 sm:px-6 lg:px-8">
+        <Link
+          to="/table"
+          className="px-16 py-2 border-purple-400 border-4 text-xl font-bold rounded-2xl text-gray-700 bg-white hover:bg-purple-300/40 mt-5 max-w-xs text-center first-letter:text-purple-400 first-letter:text-2xl ml-auto mr-auto mb-5"
+        >
           To the Table
         </Link>
 
-        <form className="border-8  flex flex-col gap-10 rounded-2xl  bg-white shadow  border-b border-purple-500 max-h-auto max-w-xl m-auto p-10">
+        <form className="border-8  flex flex-col gap-10 rounded-2xl  bg-white shadow  border-b border-purple-400 max-h-auto max-w-xl m-auto p-10">
           <main className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 pt-4 flex flex-col gap-6">
             <div className="flex flex-col ">
-              <label className="first-letter:text-xl first-letter:text-purple-500 text-extrabold">
+              <label className="first-letter:text-xl first-letter:text-purple-400 text-extrabold">
                 First Name
               </label>
               <input
                 type="text"
-                className="border-purple-500 border-2"
+                className="border-purple-400 border-2"
                 value={firstName}
                 onChange={changeFirstName}
               />
             </div>
             <div className="flex flex-col">
-              <label className="first-letter:text-xl first-letter:text-purple-500 text-extrabold">
+              <label className="first-letter:text-xl first-letter:text-purple-400 text-extrabold">
                 Last Name
               </label>
               <input
                 type="text"
-                className="border-purple-500 border-2"
+                className="border-purple-400 border-2"
                 value={lastName}
                 onChange={changeLastName}
               />
             </div>
             <div className="flex flex-col">
-              <label className="first-letter:text-xl first-letter:text-purple-500 text-extrabold">
+              <label className="first-letter:text-xl first-letter:text-purple-400 text-extrabold">
                 BirthDate
               </label>
               <ReactDatePicker
                 selected={dateBirth}
                 onChange={(date) => setDateBirth(date)}
                 type="date"
-                className="border-purple-500 border-2"
+                className="border-purple-400 border-2"
               />
             </div>
             <div className="flex flex-col">
-              <label className="first-letter:text-xl first-letter:text-purple-500 text-extrabold">
+              <label className="first-letter:text-xl first-letter:text-purple-400 text-extrabold">
                 Date of Start
               </label>
               <ReactDatePicker
                 selected={startDate}
                 onChange={(date) => setStartDate(date)}
                 type="date"
-                className="border-purple-500 border-2"
+                className="border-purple-400 border-2"
               />
             </div>
             <div className="addressInfos">
               <div className="flex flex-col">
-                <label className="first-letter:text-xl first-letter:text-purple-500 text-extrabold">
+                <label className="first-letter:text-xl first-letter:text-purple-400 text-extrabold">
                   Street
                 </label>
                 <input
                   type="text"
-                  className="border-purple-500 border-2"
+                  className="border-purple-400 border-2"
                   value={street}
                   onChange={changeStreet}
                 />
               </div>
               <div className="flex flex-col ">
-                <label className="first-letter:text-xl first-letter:text-purple-500 text-extrabold ">
+                <label className="first-letter:text-xl first-letter:text-purple-400 text-extrabold ">
                   City
                 </label>
                 <input
                   type="text"
-                  className="border-purple-500 border-2"
+                  className="border-purple-400 border-2"
                   value={city}
                   onChange={changeCity}
                 />
               </div>
               <div className="flex flex-col">
-                <label className="first-letter:text-xl first-letter:text-purple-500 text-extrabold">
+                <label className="first-letter:text-xl first-letter:text-purple-400 text-extrabold">
                   State
                 </label>
                 <select
                   value={state}
-                  className="border-purple-500 border-2"
+                  className="border-purple-400 border-2"
                   onChange={changeState}
                 >
                   <option value="AL">AL</option>
@@ -226,24 +229,24 @@ export const EmployeeRegistration = (props) => {
                 </select>
               </div>
               <div className="flex flex-col">
-                <label className="first-letter:text-xl first-letter:text-purple-500 text-extrabold">
+                <label className="first-letter:text-xl first-letter:text-purple-400 text-extrabold">
                   Zip Code
                 </label>
                 <input
                   type="text"
-                  className="border-purple-500 border-2"
+                  className="border-purple-400 border-2"
                   value={zipCode}
                   onChange={changeZipCode}
                 />
               </div>
             </div>
             <div className="flex flex-col">
-              <label className="first-letter:text-xl first-letter:text-purple-500 text-extrabold">
+              <label className="first-letter:text-xl first-letter:text-purple-400 text-extrabold">
                 Department
               </label>
               <select
                 value={department}
-                className="border-purple-500 border-2"
+                className="border-purple-400 border-2"
                 onChange={changeDepartment}
               >
                 <option>Sales</option>
@@ -257,7 +260,7 @@ export const EmployeeRegistration = (props) => {
         </form>
         <button
           onClick={transferValue}
-          className="relative inline-flex items-center px-2 py-2 border border-gray-300 text-sm font-medium text-gray-700 bg-purple-100 hover:bg-purple-300/40 mt-10"
+          className="px-24 py-2 border-purple-400 border-4 rounded-2xl font-bold text-xl text-gray-700 bg-white hover:bg-purple-300/40 mt-5 mr-auto ml-auto max-w-xs text-center first-letter:text-2xl first-letter:text-purple-400 animate-pulse"
         >
           Save
         </button>
