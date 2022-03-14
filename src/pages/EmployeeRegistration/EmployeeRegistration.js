@@ -7,6 +7,7 @@ import { useLocalStorage } from "../../Hooks/useLocalStorage";
 import format from "date-fns/esm/fp/formatDuration";
 import { PopUp } from "../../components/PopUp/PopUp";
 import "react-datepicker/dist/react-datepicker.css";
+import moment from "moment";
 
 export const EmployeeRegistration = (props) => {
   const [data, setDataArr] = useLocalStorage("data", "");
