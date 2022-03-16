@@ -1,15 +1,13 @@
 import "./App.css";
 import React from "react";
-import { useState } from "react";
 import { EmployeeRegistration } from "../pages/EmployeeRegistration/EmployeeRegistration";
 import { EmployeeTable } from "../pages/EmployeeTable/EmployeeTable";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { useLocalStorage } from "../Hooks/useLocalStorage";
 
-// ajouter UI modal ou un petit styling
-
 const App = () => {
   const [value, setValue] = useLocalStorage("value", "");
+
   const emptyArr = [
     {
       firstName: "",
@@ -36,7 +34,7 @@ const App = () => {
     }
   };
 
-  generateEmptTable(value);
+  console.log(value);
 
   return (
     <>
@@ -48,12 +46,7 @@ const App = () => {
           />
           <Route
             path="/table"
-            element={
-              <EmployeeTable
-                props={generateEmptTable(value)}
-                func={pull_data}
-              />
-            }
+            element={<EmployeeTable props={generateEmptTable(value)} />}
           />
         </Routes>
       </BrowserRouter>

@@ -1,6 +1,8 @@
 import React from "react";
 import { FiX } from "react-icons/fi";
 
+//* ajouter possibilite de changer la croi de fermeture  + boolean pour afficher  la form ou non + pouvoir annuler ou non l'animation
+
 export const PopUp = (props) => {
   return props.trigger ? (
     <div className="fixed top-0 left-0 w-full h-screen flex justify-center items-center bg-purple-900/50">
@@ -14,7 +16,5 @@ export const PopUp = (props) => {
         {props.children}
       </div>
     </div>
-  ) : (
-    ""
-  );
+  ) : null;
 };

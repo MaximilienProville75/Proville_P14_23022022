@@ -1,10 +1,8 @@
 import React from "react";
-import "./EmployeeRegistration.css";
 import ReactDatePicker from "react-datepicker";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useLocalStorage } from "../../Hooks/useLocalStorage";
-import format from "date-fns/esm/fp/formatDuration";
 import { PopUp } from "../../components/PopUp/PopUp";
 import "react-datepicker/dist/react-datepicker.css";
 import moment from "moment";
@@ -14,10 +12,9 @@ export const EmployeeRegistration = (props) => {
   //*
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
-  //* Dates [.toDateString()]
+  //* Dates
   const [dateBirth, setDateBirth] = useState(new Date());
   const [startDate, setStartDate] = useState(new Date());
-
   //* Address States
   const [street, setStreet] = useState("");
   const [city, setCity] = useState("");
@@ -25,34 +22,8 @@ export const EmployeeRegistration = (props) => {
   const [zipCode, setZipCode] = useState("");
   //* Department State
   const [department, setDepartment] = useState("");
-
+  //* PopUp
   const [buttonPopUp, setButtonPopUp] = useState(false);
-
-  //? States Values
-  const changeFirstName = (event) => {
-    setFirstName(event.target.value);
-  };
-  const changeLastName = (event) => {
-    setLastName(event.target.value);
-  };
-
-  //? Address State
-  const changeStreet = (event) => {
-    setStreet(event.target.value);
-  };
-  const changeCity = (event) => {
-    setCity(event.target.value);
-  };
-  const changeState = (event) => {
-    setState(event.target.value);
-  };
-  const changeZipCode = (event) => {
-    setZipCode(event.target.value);
-  };
-  //? Department State
-  const changeDepartment = (event) => {
-    setDepartment(event.target.value);
-  };
 
   const transferValue = (event) => {
     event.preventDefault();
@@ -61,17 +32,22 @@ export const EmployeeRegistration = (props) => {
     const val = {
       firstName,
       lastName,
-      dateBirth,
-      startDate,
+      dateBirth: moment(dateBirth.toUTCString()).format("DD/MM/YYYY"),
+      startDate: moment(startDate.toUTCString()).format("DD/MM/YYYY"),
       street,
       city,
       state,
       zipCode,
       department,
     };
+
     setDataArr([...data, val]);
     clearState();
   };
+
+  useEffect(() => {
+    props.func(data);
+  }, [data, props]);
 
   const clearState = () => {
     setFirstName("");
@@ -84,9 +60,6 @@ export const EmployeeRegistration = (props) => {
     setZipCode("");
     setDepartment("");
   };
-  // const updatedStringDate = dateBirth.toISOString().substring(0, 10);
-
-  props.func(data);
 
   return (
     <>
@@ -108,7 +81,7 @@ export const EmployeeRegistration = (props) => {
                 type="text"
                 className="border-purple-400 border-2"
                 value={firstName}
-                onChange={changeFirstName}
+                onChange={(event) => setFirstName(event.target.value)}
               />
             </div>
             <div className="flex flex-col">
@@ -119,7 +92,7 @@ export const EmployeeRegistration = (props) => {
                 type="text"
                 className="border-purple-400 border-2"
                 value={lastName}
-                onChange={changeLastName}
+                onChange={(event) => setLastName(event.target.value)}
               />
             </div>
             <div className="flex flex-col">
@@ -128,7 +101,9 @@ export const EmployeeRegistration = (props) => {
               </label>
               <ReactDatePicker
                 selected={dateBirth}
-                onChange={(date) => setDateBirth(date)}
+                onChange={(date) => {
+                  setDateBirth(date);
+                }}
                 type="date"
                 className="border-purple-400 border-2"
               />
@@ -153,7 +128,7 @@ export const EmployeeRegistration = (props) => {
                   type="text"
                   className="border-purple-400 border-2"
                   value={street}
-                  onChange={changeStreet}
+                  onChange={(event) => setStreet(event.target.value)}
                 />
               </div>
               <div className="flex flex-col ">
@@ -164,7 +139,7 @@ export const EmployeeRegistration = (props) => {
                   type="text"
                   className="border-purple-400 border-2"
                   value={city}
-                  onChange={changeCity}
+                  onChange={(event) => setCity(event.target.value)}
                 />
               </div>
               <div className="flex flex-col">
@@ -174,7 +149,7 @@ export const EmployeeRegistration = (props) => {
                 <select
                   value={state}
                   className="border-purple-400 border-2"
-                  onChange={changeState}
+                  onChange={(event) => setState(event.target.value)}
                 >
                   <option value="AL">AL</option>
                   <option value="AK">AK</option>
@@ -237,7 +212,7 @@ export const EmployeeRegistration = (props) => {
                   type="text"
                   className="border-purple-400 border-2"
                   value={zipCode}
-                  onChange={changeZipCode}
+                  onChange={(event) => setZipCode(event.target.value)}
                 />
               </div>
             </div>
@@ -248,7 +223,7 @@ export const EmployeeRegistration = (props) => {
               <select
                 value={department}
                 className="border-purple-400 border-2"
-                onChange={changeDepartment}
+                onChange={(event) => setDepartment(event.target.value)}
               >
                 <option>Sales</option>
                 <option>Marketing</option>
