@@ -6,6 +6,7 @@ import { useLocalStorage } from "../../Hooks/useLocalStorage";
 import { PopUp } from "../../components/PopUp/PopUp";
 import "react-datepicker/dist/react-datepicker.css";
 import moment from "moment";
+import { FiAlertTriangle } from "react-icons/fi";
 
 export const EmployeeRegistration = (props) => {
   const [data, setDataArr] = useLocalStorage("data", "");
@@ -240,7 +241,13 @@ export const EmployeeRegistration = (props) => {
         >
           Save
         </button>
-        <PopUp trigger={buttonPopUp} setTrigger={setButtonPopUp}>
+        <PopUp
+          trigger={buttonPopUp}
+          setTrigger={setButtonPopUp}
+          // closeIcon={<FiAlertTriangle />}
+          bgView={true}
+          animationOn={true}
+        >
           <h1 className="font-sans text-2xl font-bold first-letter:text-purple-500 first-letter:text-4xl text-center">
             Employee Created!
           </h1>
