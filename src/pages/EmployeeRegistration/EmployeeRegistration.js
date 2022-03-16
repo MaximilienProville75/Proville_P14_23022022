@@ -7,8 +7,10 @@ import { PopUp } from "../../components/PopUp/PopUp";
 import "react-datepicker/dist/react-datepicker.css";
 import moment from "moment";
 import { FiAlertTriangle } from "react-icons/fi";
+// import PopUp
 
 export const EmployeeRegistration = (props) => {
+  console.log(PopUp);
   const [data, setDataArr] = useLocalStorage("data", "");
   //*
   const [firstName, setFirstName] = useState("");
