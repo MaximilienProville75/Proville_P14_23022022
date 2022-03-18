@@ -2,7 +2,6 @@ import React from "react";
 import { FiX } from "react-icons/fi";
 
 export const PopUp = (props) => {
-  console.log(props.bgView);
   return props.trigger ? (
     <div
       className={`fixed top-0 left-0 w-full h-screen flex justify-center items-center ${

@@ -34,16 +34,11 @@ const App = () => {
     }
   };
 
-  console.log(value);
-
   return (
     <>
       <BrowserRouter>
         <Routes>
-          <Route
-            path="/registration"
-            element={<EmployeeRegistration func={pull_data} />}
-          />
+          <Route path="/" element={<EmployeeRegistration func={pull_data} />} />
           <Route
             path="/table"
             element={<EmployeeTable props={generateEmptTable(value)} />}

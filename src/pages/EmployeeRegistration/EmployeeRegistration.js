@@ -3,14 +3,12 @@ import ReactDatePicker from "react-datepicker";
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useLocalStorage } from "../../Hooks/useLocalStorage";
-import { PopUp } from "../../components/PopUp/PopUp";
 import "react-datepicker/dist/react-datepicker.css";
 import moment from "moment";
-import { FiAlertTriangle } from "react-icons/fi";
-// import PopUp
+import { FiCloudLightning } from "react-icons/fi";
+import { PopUp } from "modal-oc-14-mp/dist/components/PopModal.js";
 
 export const EmployeeRegistration = (props) => {
-  console.log(PopUp);
   const [data, setDataArr] = useLocalStorage("data", "");
   //*
   const [firstName, setFirstName] = useState("");
@@ -69,12 +67,12 @@ export const EmployeeRegistration = (props) => {
       <div className="min-h-screen text-gray-900 flex justify-center bg-purple-300 flex-col py-12 px-4 sm:px-6 lg:px-8">
         <Link
           to="/table"
-          className="px-16 py-2 border-purple-400 border-4 text-xl font-bold rounded-2xl text-gray-700 bg-white hover:bg-purple-300/40 mt-5 max-w-xs text-center first-letter:text-purple-400 first-letter:text-2xl ml-auto mr-auto mb-5"
+          className="px-16 py-2 border-purple-400 border-4 text-xl font-bold rounded-2xl text-gray-700 bg-white hover:bg-purple-300/40 mt-5 max-w-xs text-center first-letter:text-purple-400 first-letter:text-2xl ml-auto mr-auto mb-5 shadow-lg shadow-purple-500"
         >
           To the Table
         </Link>
 
-        <form className="border-8  flex flex-col gap-10 rounded-2xl  bg-white shadow  border-b border-purple-400 max-h-auto max-w-xl m-auto p-10">
+        <form className="border-8  flex flex-col gap-10 rounded-2xl  bg-white shadow  border-b border-purple-400 max-h-auto max-w-xl m-auto p-10 shadow-lg shadow-purple-500">
           <main className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 pt-4 flex flex-col gap-6">
             <div className="flex flex-col ">
               <label className="first-letter:text-xl first-letter:text-purple-400 text-extrabold">
@@ -239,14 +237,14 @@ export const EmployeeRegistration = (props) => {
         </form>
         <button
           onClick={transferValue}
-          className="px-24 py-2 border-purple-400 border-4 rounded-2xl font-bold text-xl text-gray-700 bg-white hover:bg-purple-300/40 mt-5 mr-auto ml-auto max-w-xs text-center first-letter:text-2xl first-letter:text-purple-400 animate-pulse"
+          className="px-24 py-2 border-purple-400 border-4 rounded-2xl font-bold text-xl text-gray-700 bg-white hover:bg-purple-300/40 mt-5 mr-auto ml-auto max-w-xs text-center first-letter:text-2xl first-letter:text-purple-400 animate-pulse shadow-lg shadow-purple-500"
         >
           Save
         </button>
         <PopUp
           trigger={buttonPopUp}
           setTrigger={setButtonPopUp}
-          // closeIcon={<FiAlertTriangle />}
+          // closeIcon={<FiCloudLightning />}
           bgView={true}
           animationOn={true}
         >

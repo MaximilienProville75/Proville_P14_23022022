@@ -1,8 +1,6 @@
 import React from "react";
-import "./EmployeeTable.css";
 import Table from "../../components/Table/Table";
 import { Link } from "react-router-dom";
-import { useState } from "react";
 
 export const EmployeeTable = (props) => {
   let data = props.props;
@@ -58,12 +56,15 @@ export const EmployeeTable = (props) => {
   return (
     <>
       <div className="min-h-screen bg-gray-100 text-gray-900">
+        <div className="text-center text-4xl mt-5 font-serif font-extrabold text-gray-900">
+          Hr Net : Current Employees
+        </div>
         <main className="max-w-8xl mx-auto px-4 sm:px-6 lg:px-8 pt-4">
           <div className="mt-4">
             <Table columns={columns} data={data} />
           </div>
-          <div className="textLnk">
-            <Link to="/registration">Home</Link>
+          <div className="m-auto text-center px-4 py-2 border ring-4 text-sm ring-purple-300/40 font-medium rounded-md text-gray-700 bg-purple-100 hover:bg-purple-300/40 w-24 shadow-xl shadow-purple-300">
+            <Link to="/">Home</Link>
           </div>
         </main>
       </div>
