@@ -41,7 +41,7 @@ export const EmployeeTable = (props) => {
           },
           {
             Header: "State",
-            accessor: "state2",
+            accessor: "usaState",
           },
           {
             Header: "Zip Code",
@@ -56,7 +56,7 @@ export const EmployeeTable = (props) => {
   return (
     <>
       <div className="min-h-screen bg-gray-100 text-gray-900">
-        <div className="text-center text-4xl mt-5 font-serif font-extrabold text-gray-900">
+        <div className="text-center text-4xl  font-serif font-extrabold text-gray-900">
           Hr Net : Current Employees
         </div>
         <main className="max-w-8xl mx-auto px-4 sm:px-6 lg:px-8 pt-4">
