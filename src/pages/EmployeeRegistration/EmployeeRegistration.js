@@ -19,10 +19,10 @@ export const EmployeeRegistration = (props) => {
   //* Address States
   const [street, setStreet] = useState("");
   const [city, setCity] = useState("");
-  const [usaState, setUSAState] = useState("");
+  const [usaState, setUSAState] = useState("AL");
   const [zipCode, setZipCode] = useState("");
   //* Department State
-  const [department, setDepartment] = useState("");
+  const [department, setDepartment] = useState("Sales");
   //* PopUp
   const [buttonPopUp, setButtonPopUp] = useState(false);
 
@@ -151,6 +151,7 @@ export const EmployeeRegistration = (props) => {
                   value={usaState}
                   className="border-purple-400 border-2"
                   onChange={(event) => setUSAState(event.target.value)}
+                  defaultValue={"AL"}
                 >
                   <option>AL</option>
                   <option>AK</option>
