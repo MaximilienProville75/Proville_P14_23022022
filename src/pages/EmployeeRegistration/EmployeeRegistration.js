@@ -33,8 +33,8 @@ export const EmployeeRegistration = (props) => {
     const val = {
       firstName,
       lastName,
-      dateBirth: moment(dateBirth.toUTCString()).format("DD/MM/YYYY"),
-      startDate: moment(startDate.toUTCString()).format("DD/MM/YYYY"),
+      dateBirth: moment(dateBirth.toUTCString()).format("YYYY-MM-DD"),
+      startDate: moment(startDate.toUTCString()).format("YYYY-MM-DD"),
       street,
       city,
       usaState,
